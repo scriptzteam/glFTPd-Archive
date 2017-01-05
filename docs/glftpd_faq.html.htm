@@ -1,0 +1,759 @@
+<HTML>
+<HEAD>
+  <TITLE>glFTPd Frequently Asked Questions</TITLE>
+</HEAD>
+<BODY>
+
+<FONT SIZE="+3"><B><U>glFTPD Frequently Asked Questions</U></B></FONT><BR>
+<FONT SIZE="-2">last updated on February 26th, 2002 by dn</FONT>
+
+<H1><A NAME="Contents"></A><U>Contents</U></H1>
+<PRE><FONT SIZE="+0"><A HREF="#1.01">1.01) How do I upgrade glftpd?</A>
+<A HREF="#1.02">1.02) How do I restart glftpd?</A>
+<A HREF="#1.03">1.03) Can I turn IP checking off?</A>
+<A HREF="#1.04">1.04) I want to create a symlink in /incoming that points to another partition.</A>
+      <A HREF="#1.04">The link is there, but users are not able to change directory to it.</A>
+<A HREF="#1.05">1.05) I want to setup a more &quot;open&quot; site. I would like one login/password for a</A>
+      <A HREF="#1.05">multitude of users. Essentially I want an &quot;anonymous&quot; style login.</A>
+<A HREF="#1.06">1.06) GREAT! that works just like I need it to. Now I want to add a &quot;set ratio</A>
+      <A HREF="#1.06">per login&quot; so each individual that logs in will start w/ a fresh ratio.</A>
+<A HREF="#1.07">1.07) How do users change their own password?</A>
+<A HREF="#1.08">1.08) Where can I get a good FAQ on glFTPD?</A>
+<A HREF="#1.09">1.09) Where can I always find the absolute positively latest version of glFTPD?</A>
+<A HREF="#1.10">1.10) Where can I get scripts, and utilities for glFTPD?</A>
+<A HREF="#1.11">1.11) When I create a directory for users to upload to, what permissions do I</A>
+      <A HREF="#1.11">need to give it?</A>
+<A HREF="#1.12">1.12) How do I make dated directories automatically?</A>
+<A HREF="#1.13">1.13) What is a NUKE?</A>
+<A HREF="#1.14">1.14) How do I disable DUPE checking?</A>
+<A HREF="#1.15">1.15) Where can I get the source code?</A>
+<A HREF="#1.16">1.16) Does it matter what distribution of Linux I use??</A>
+<A HREF="#1.17">1.17) I have a question, but its not on this list.</A>
+<A HREF="#1.18">1.18) Where can I find a Windows version of glFTPD?</A>
+<A HREF="#1.19">1.19) When will a Windows version be released?</A>
+<A HREF="#1.20">1.20) What does the &quot;gl&quot; in glFTPD stand for?</A>
+<A HREF="#1.21">1.21) I get &quot;site: command not found&quot;? what am I doing wrong?</A>
+<A HREF="#1.22">1.22) When trying to use a site command, I get "?Invalid command". Why?</A>
+<A HREF="#1.23">1.23) How do I edit the dirlog?</A>
+<A HREF="#1.24">1.24) Where can I find a list of the changes that have occurred to glFTPD</A>
+      <A HREF="#1.24">throughout its life?</A>
+<A HREF="#1.25">1.25) How do install Linux ?</A>
+<A HREF="#1.26">1.26) I have this GREAT idea for glFTPD. How do I go about communicating</A>
+      <A HREF="#1.26">this idea back to the author(s)?</A>
+<A HREF="#1.27">1.27) How can I have more then 1 simultaneous login?</A>
+<A HREF="#1.28">1.28) How can I get the most out of my glFTPD experience?</A>
+<A HREF="#1.29">1.29) How can i keep any user from showing up in the user list and in the</A>
+      <A HREF="#1.29">stats commands (wkup, aldn, etc)?</A>
+<A HREF="#1.30">1.30) If i have users on my shell but i dont want them browsing my ftp site,</A>
+      <A HREF="#1.30">what do i do to disallow them from doing this??</A>
+<A HREF="#1.31">1.31) How do i give someone unlimited credits??</A>
+<A HREF="#1.32">1.32) Hey i can't do site users?? This must be a bug??</A>
+<A HREF="#1.33">1.33) What do all the dirs mean?? I see them but dont understand there purpose.</A>
+<A HREF="#1.34">1.34) If i want to put glftpd on port 21 how do i do this?? I have tried and it</A>
+      <A HREF="#1.34">doesn't seem to work.</A>
+<A HREF="#1.35">1.35) I get a 220 Server Error: (SHMGET) Failed!, how do i fix this?</A>
+<A HREF="#1.36">1.36) My rootpath is / and now help doesnt work anymore, please help!!</A>
+<A HREF="#1.37">1.37) I get &quot;200 username not unique&quot; how can i fix this??</A>
+<A HREF="#1.38">1.38) My time in glftpd isn't right, how do i fix this??</A>
+<A HREF="#1.39">1.39) My time in gl_spy isn't right, how do i fix this??</A>
+<A HREF="#1.40">1.40) What if i want to give a user a 3:1 ratio??</A>
+<A HREF="#1.41">1.41) Site alup and other stat commands don't show the header/footer files</A>
+      <A HREF="#1.41">for all sections besides the default one. How do I fix it?</A>
+<A HREF="#1.42">1.42) I deleted one of my logs from ftp-data/logs and glftpd doesn't re-create it,</A>
+      <A HREF="#1.42">what do I do?</A>
+<A HREF="#1.43">1.43) How do I prevent subdirectories of a directory from being shown in site new?</A>
+<A HREF="#1.44">1.44) Does glftpd support upload resume??</A>
+<A HREF="#1.45">1.45) I get &quot;200- Lock on password file failed.&quot; when trying to add a user</A>
+<A HREF="#1.46">1.46) My glftpd won't start and my syslog says &quot;Chroot failed.&quot; What's wrong?</A>
+<A HREF="#1.47">1.47) How do I make symlinks on my site look like regular directories?</A>
+<A HREF="#1.48">1.48) How do I ban a specific IP from my site?</A>
+<A HREF="#1.49">1.49) I can connect to newly installed glftpd from localhost, but not from</A>
+      <A HREF="#1.49">outside.</A>
+<A HREF="#1.50">1.50) I make changes to glftpd.conf but they don't take effect when I re-login.</A>
+<A HREF="#1.51">1.51) How do I make new users start at a specific UID, like 10000?</A>
+<A HREF="#1.52">1.52) Can I disallow users to see or enter a directory but allow them to enter</A>
+      <A HREF="#1.52">its subdirectory via a symlink?</A>
+<A HREF="#1.53">1.53) Can I restrict one command but not others in a case of bundled commands,</A>
+      <A HREF="#1.53">like &quot;laston&quot; and &quot;onel&quot;, which are both controlled by the &quot;-info&quot; setting?</A>
+<A HREF="#1.54">1.54) Why do my new users start in / instead of /site when they log in.</A>
+<A HREF="#1.55">1.55) How do I get gl_spy to use color?</A>
+<A HREF="#1.56">1.56) Why does glftpd only recognize GIDs that are multiple of 100? Why do GIDs</A>
+      <A HREF="#1.56">seem to increase by themselves, yet glftpd still displays the same one?</A>
+<A HREF="#1.57">1.57) Can I &quot;unbind&quot; one of the bundled site commands so I can have different</A>
+      <A HREF="#1.57">permission for it than for the rest?</A>
+<A HREF="#1.58">1.58) Does glftpd run stand-alone, without inetd?</A>
+<A HREF="#1.59">1.59) Will glftpd support using system passwd file (/etc/passwd)?</A>
+<A HREF="#1.60">1.60) Does glftpd support /etc/shadow?</A>
+<A HREF="#1.61">1.61) What does the multiplier in 'site nuke' do?</A>
+</PRE> </FONT>
+
+<H1><U>Answers</U></H1>
+<H3><A NAME="1.01"></A><FONT SIZE="+0" FACE="Times New Roman"> 1.01) How do I upgrade glftpd?</FONT></H3>
+<PRE><FONT SIZE="+0">Follow instructions in the UPGRADING file. If you're upgrading more than one
+version up, it is recommended that you upgrade one version at a time, log in
+globally change one of your users' attributes to make glftpd re-write all the
+userfiles (and do some conversions if necessary).  For example, log in as 
+siteop and do &quot;site change * max_ulspeed 0&quot; after each version upgrade.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.02"></A><FONT SIZE="+0" FACE="Times New Roman">1.02)
+How do I restart glftpd?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Log off and back on. Glftpd reads its config file each time a user logs on.
+If someone tells you to HUP inetd, tell him he's an idiot and doesn't
+understand how glftpd works. HUPping inetd is needed after making changes
+to inetd.conf, not glftpd.conf.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.03"></A><FONT SIZE="+0" FACE="Times New Roman">1.03)
+Can I turn IP checking off?</FONT></H3>
+<PRE><FONT SIZE="+0">To turn it off for all existing users and any future users, type this at
+the shell:
+ls /glftpd/ftp-data/users |while read usr; do echo &quot;IP *@*&quot; &gt;&gt;$usr; done
+Change the path if you installed glftpd elsewhere.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.04"></A><FONT SIZE="+0" FACE="Times New Roman">1.04)
+I want to create a symlink in /incoming that points to another
+partition.<BR>
+The link is there, but users are not able to change directory
+to it.</FONT></H3>
+
+<PRE><FONT SIZE="+0">For symlinks to work right, the target of the symlink must be in the glftpd
+root path.  It is best to just mount the partition under /glftpd/site.
+A symlink from /glftpd/site to /glftpd/bleh will have to be without the
+rootpath, so it will go from /site to /bleh.  The above will only work if 
+users' homedir is set to /. Users can't access anything outside of their 
+homedir, so if it is /site, they won't be able to jump to /glftpd/bleh.
+Otherwise, your links need to start with . and they can't have the
+rootpath or homedir in them.  Examples:
+                    ln -s ./incoming/mydir mydirshortcut
+                    ln -s ../archive/games games
+                    ln -s /incoming/uploads uploads
+
+The reason for this limitation is for security purposes. When a user logs
+in, he is &quot;chrooted&quot; to /glftpd (or whatever the rootpath is), so it is
+physically impossible to access anything outside. This prohibits any user
+logged in from browsing outside the glftpd root directory. If you're
+familiar w/ wu-ftpd and telnet, normal users are permitted to browse
+anywhere permissions permit. This is not a desired feature for this server,
+and we feel the &quot;cost&quot; is worth the security.
+You can also use the mount -bind command but this is for use with the
+latest mount version on linux in 2.4+ kernels. This lets you mount a drive
+to more than one mountpoint. Another option is to export a directory
+outside of /glftpd via nfs and then nfs-mount it inside - but this will
+slow things down.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.05"></A><FONT SIZE="+0" FACE="Times New Roman">1.05)
+I want to setup a more &quot;open&quot; site. I would like one
+login/password for a<BR>
+multitude of users. Essentially I want an &quot;anonymous&quot;
+style login.</FONT></H3>
+
+<PRE><FONT SIZE="+0">Create the account w/ the password you desire, and set IP0 to *@*
+(site addip &lt;user&gt; &lt;pass&gt; *@*).
+If you want to use an email for password, or any password, see glftpd.docs
+for syntax on the site chpass command.
+You also need to set the number of simultaneous logins to what you need it
+to be. (site CHANGE &lt;user&gt; NUM_LOGINS 0) 0=infinite
+(Update) In 1.15.6+ there is a new flag (8)..which is for anon users.
+e.g.: site adduser mp3 mp3 *@*
+      site chpass mp3 * for any password
+      site chpass mp3 @ for email-style passwords
+Then edit the ratio and credits...when the mp3 user logs in, the mp3
+account is read in as a template...so each mp3 user that logs in will have
+a fresh ratio and credits.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.06"></A><FONT SIZE="+0" FACE="Times New Roman">1.06)
+GREAT! that works just like I need it to. Now I want to add a
+&quot;set ratio<BR>
+per login&quot; so each individual that logs in will start w/
+a fresh ratio.</FONT></H3>
+
+<PRE><FONT SIZE="+0">Only possible in 1.15.6 and above. Read above.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.07"></A><FONT SIZE="+0" FACE="Times New Roman">1.07)
+How do users change their own password?</FONT></H3>
+
+<PRE><FONT SIZE="+0">site PASSWD &lt;password&gt;; and as always READ glftpd.docs
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.08"></A><FONT SIZE="+0" FACE="Times New Roman">1.08)
+Where can I get a good FAQ on glFTPD?</FONT></H3>
+
+<PRE><FONT SIZE="+0">*shrug* Your reading it.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.09"></A><FONT SIZE="+0" FACE="Times New Roman">1.09)
+Where can I always find the absolute positively latest version
+of glFTPD?</FONT></H3>
+
+<PRE><FONT SIZE="+0">http://www.glftpd.com will
+contain latest version, however check in #glftpd on efnet too.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.10"></A><FONT SIZE="+0" FACE="Times New Roman">1.10)
+Where can I get scripts, and utilities for glFTPD?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Check the web site: &lt;http://www.glftpd.com&gt;
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.11"></A><FONT SIZE="+0" FACE="Times New Roman">1.11)
+When I create a directory for users to upload to, what permissions
+do I<BR>
+need to give it?</FONT></H3>
+
+<PRE><FONT SIZE="+0">777. chmod 777 &lt;directory&gt;, and add the path to the rights section
+of /etc/glftpd.conf. `man chmod` for more information.
+All directories you want users to access through glftpd should be 755,
+and incoming dirs (dirs users upload to) should be 777.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.12"></A><FONT SIZE="+0" FACE="Times New Roman">1.12)
+How do I make dated directories automatically?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Crontab /glftpd/bin/dated.sh to run at or right after midnight.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.13"></A><FONT SIZE="+0" FACE="Times New Roman">1.13)
+What is a NUKE?</FONT></H3>
+
+<PRE><FONT SIZE="+0">When the user(s) uploads a file and a person with the nuke flag sees reason
+for it to not be on the site, they can NUKE it. This typically renames
+the directory. The rename format is definable in the config file.
+Nuking is designed to take away the credits and transfer statistics for
+the files from people that uploaded them.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.14"></A><FONT SIZE="+0" FACE="Times New Roman">1.14)
+How do I disable DUPE checking?</FONT></H3>
+
+<PRE><FONT SIZE="+0">1) Add nodupecheck /path/to/be/excluded/from/dupechecking to your config file.
+2) Change your dupe_check argument to 0 in config file to disable all paths.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.15"></A><FONT SIZE="+0" FACE="Times New Roman">1.15)
+Where can I get the source code?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Nowhere, it is not released for several reasons.
+1. Evil hackers could find exploits easier and not report them.
+2. Wanna-be 'coders' would start many variants of glftpd that they would
+claim are their own and they probably wouldn't share any work they do.
+There are several people with access to the source code; when we are
+confident that #1 is not a big issue and when we no longer care about #2,
+we will release the source code.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.16"></A><FONT SIZE="+0" FACE="Times New Roman">1.16)
+Does it matter what distribution of Linux I use??</FONT></H3>
+
+<PRE><FONT SIZE="+0">99.9% of distribution problems are user related. Users of Redhat report
+the most problems by percentage.
+Need I say more?
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.17"></A><FONT SIZE="+0" FACE="Times New Roman">1.17)
+I have a question, but its not on this list.</FONT></H3>
+
+<PRE><FONT SIZE="+0">Read the glftpd.docs and see if you can find an answer.
+If you have a good question that should be here, contact us in #glftpd on
+efnet or through web pages.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.18"></A><FONT SIZE="+0" FACE="Times New Roman">1.18)
+Where can I find a Windows version of glFTPD?</FONT></H3>
+
+<PRE><FONT SIZE="+0">See next question.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.19"></A><FONT SIZE="+0" FACE="Times New Roman">1.19)
+When will a Windows version be released?</FONT></H3>
+
+<PRE><FONT SIZE="+0">See previous question.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.20"></A><FONT SIZE="+0" FACE="Times New Roman">1.20)
+What does the &quot;gl&quot; in glFTPD stand for?</FONT></H3>
+
+<PRE><FONT SIZE="+0">-The creator's answer: He keeps telling us it's because he's &quot;Good Looking&quot;.
+-More likely answer: His nick is GreyLine.</FONT>
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.21"></A><FONT SIZE="+0" FACE="Times New Roman">1.21)
+I get &quot;site: command not found&quot;? What am I doing wrong?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Are you logged INTO the ftpd? Most likely not. (moron)
+Type &quot;ftp localhost portnumber&quot;, log in, try it again.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.22"></A><FONT SIZE="+0" FACE="Times New Roman">1.22)
+When trying to use a site command, I get "?Invalid command". Why?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Some old ftp clients don't support site commands directly.
+Try "quote site bleh" instead.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.23"></A><FONT SIZE="+0" FACE="Times New Roman">1.23)
+How do I edit the dirlog?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Make a dirlog editor, the source was released to use as a base.
+(Update) Thanks to evilution there are several utils to manipulate dirlog,
+look in /glftpd/bin/sources.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.24"></A><FONT SIZE="+0" FACE="Times New Roman">1.24)
+Where can I find a list of the changes that have occurred to glFTPD<BR>
+throughout its life?</FONT></H3>
+
+<PRE><FONT SIZE="+0">In the CHANGELOG included in the distribution package.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.25"></A><FONT SIZE="+0" FACE="Times New Roman">1.25)
+How do install Linux?</FONT></H3>
+
+<PRE><FONT SIZE="+0">*SMACK*
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.26"></A><FONT SIZE="+0" FACE="Times New Roman">1.26)
+I have this GREAT idea for glFTPD. How do I go about communicating<BR>
+this idea back to the author(s)?</FONT></H3>
+
+<PRE><FONT SIZE="+0">A1) Post it to the forums (links to forum available at the glFTPD websites)
+A2) Drop in #glftpd on efnet and talk to an op.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.27"></A><FONT SIZE="+0" FACE="Times New Roman">1.27)
+How can I have more then 1 simultaneous login?</FONT></H3>
+
+<PRE><FONT SIZE="+0">site CHANGE &lt;user&gt; NUM_LOGINS 0 (0=infinite).
+READ the included glftpd.docs
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.28"></A><FONT SIZE="+0" FACE="Times New Roman">1.28)
+How can I get the most out of my glFTPD experience?</FONT></H3>
+
+<PRE><FONT SIZE="+0">READ glftpd.docs
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.29"></A><FONT SIZE="+0" FACE="Times New Roman">1.29)
+How can i keep any user from showing up in the user list and in
+the<BR>
+stats commands (wkup, aldn, etc)?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Chown 99.99 userfile (located in /glftpd/ftp-data/users).
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.30"></A><FONT SIZE="+0" FACE="Times New Roman">1.30)
+If i have users on my shell but i dont want them browsing my ftp
+site,<BR>
+what do i do to disallow them from doing this??</FONT></H3>
+
+<PRE><FONT SIZE="+0">You can install glftpd into /jail/glftpd, chmod jail to 700 and chmod
+glftpd 755 and leave everything else default.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.31"></A><FONT SIZE="+0" FACE="Times New Roman">1.31)
+How do i give someone unlimited credits??</FONT></H3>
+
+<PRE><FONT SIZE="+0">Site change user ratio 0....can you guess whats coming next??
+This is all in the glftpd.docs file.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.32"></A><FONT SIZE="+0" FACE="Times New Roman">1.32)
+Hey i can't do site users?? This must be a bug??</FONT></H3>
+
+<PRE><FONT SIZE="+0">You need the +H flag. Try &quot;site flags&quot; for help, or rtfm.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.33"></A><FONT SIZE="+0" FACE="Times New Roman">1.33)
+What do all the dirs mean?? I see them but dont understand there
+purpose.</FONT></H3>
+
+<PRE><FONT SIZE="+0">/glftpd/
+- bin (This is where all the bins are stored for the server)
+- etc (This is where the passwd and group files are...dont worry about
+  the passwd- and group- they are only backups)
+- dev (This is where null and zero are stored. Some scripts need them)
+- lib (This is where all the libs are stored for all the external
+  programs executed under glftpd.)
+- ftp-data (This is where all the data for the server is stored)
+- byefiles (This is where the user.bye files are stored. When a
+  user is deleted, you can put the reason for the sudden
+  departure of their account in there to be shown next time
+  they try to log in)
+- help (This is where the help files are stored. You can change
+  how they look, they're just regular text files)
+- logs (This is where the log files are. Usefull for siteops)
+- misc (This is where some misc text files are kept, like
+  welcome message, goodbye, etc. This is where you put most of
+  your cookies to be displayed when users login, etc.)
+- text (This is where all of the texts are stored. Go in and
+  read them to get an idea what their purpose is)
+- users (This is where the user data is stored. Sometimes it's
+  easier to edit those files then to do it from the ftpd, but
+  be warned you could fuck it up and hose the account)
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.34"></A><FONT SIZE="+0" FACE="Times New Roman">1.34)
+If I want to put glftpd on port 21 how do I do this?? I have tried
+and it<BR>
+doesn't seem to work.</FONT></H3>
+
+<PRE><FONT SIZE="+0">The standard ftp client under linux needs the line &quot;ftp 21/tcp&quot; in the
+/etc/services file. Other clients should work fine. If you need the
+standard ftp client to work, just keep your old &quot;ftp 21&quot; line in addition
+to the &quot;glftpd 21/tcp&quot; line in the services file.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.35"></A><FONT SIZE="+0" FACE="Times New Roman">1.345
+I get a 220 Server Error: (SHMGET) Failed!, how do i fix this?</FONT></H3>
+
+<PRE><FONT SIZE="+0">When you change the max_users you need to kill off all glftpd sessions
+and stop running gl_spy.
+To solve this, type: ipcs
+------ Shared Memory Segments --------
+key shmid owner perms bytes nattch status 
+0x00000000 0 nobody 600 46084 11 dest 
+0x0000dead 2945 root 644 15840 0 locked
+------ Semaphore Arrays --------
+key semid owner perms nsems status 
+------ Message Queues --------
+key msqid owner perms used-bytes messages 
+0x00000000 0 root 700 0
+
+For linux type: ipcrm shm shmid (In this example, shmid is 2945)
+For FBSD type: ipcrm -m shmid
+b) Make sure your kernel isn't screwing with shared memory. Some &quot;secure&quot;
+kernels (in new Mandrake linux distributions) are doing this.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.36"></A><FONT SIZE="+0" FACE="Times New Roman">1.36)
+My rootpath is / and now help doesnt work anymore, please help!!</FONT></H3>
+
+<PRE><FONT SIZE="+0">/glftpd/ftp-data/help/site.help needs to be edited to reflect the root_path
+change.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.37"></A><FONT SIZE="+0" FACE="Times New Roman">1.37)
+I get &quot;200 username not unique&quot; how can i fix this??</FONT></H3>
+
+<PRE><FONT SIZE="+0">You have an entry in your /glftpd/etc/passwd file with the same user name.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.38"></A><FONT SIZE="+0" FACE="Times New Roman">1.38)
+My time in glftpd isn't right, how do i fix this??</FONT></H3>
+
+<PRE><FONT SIZE="+0">locate localtime ; cp /pathto/localtime /glftpd/etc
+If that doesn't work, try copying it to /glftpd/usr/lib/zoneinfo or
+/glftpd/usr/share/zoneinfo). Obviously, you need to create /glftpd/usr
+and the share/lib dirs under it.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.39"></A><FONT SIZE="+0" FACE="Times New Roman">1.39)
+My time in gl_spy isn't right, how do i fix this??</FONT></H3>
+
+<PRE><FONT SIZE="+0">1) Don't use redhat
+2) Locate localtime ; cp /pathto/localtime /usr/lib/zoneinfo</FONT>
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.40"></A><FONT SIZE="+0" FACE="Times New Roman">1.40)
+What if i want to give a user a 3:1 ratio??</FONT></H3>
+
+<PRE><FONT SIZE="+0">You can't, currently glftpd only support 1:x ratio.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.41"></A><FONT SIZE="+0" FACE="Times New Roman">1.41)
+Site alup and other stat commands don't show the header/footer
+files<BR>
+for all sections besides the default one. How do I fix it?</FONT></H3>
+
+<PRE><FONT SIZE="+0">You need to copy the head/foot/body files to SECTIONNAMEfile.head, etc.
+For example, if you add a section called ISO, you need to do this:
+cp alup.head ISOalup.head; cp alup.body ISOalup.body, etc, for every stats
+file in the text dir.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.42"></A><FONT SIZE="+0" FACE="Times New Roman">1.42)
+I deleted one of my logs from ftp-data/logs and glftpd doesn't
+re-create it,<BR>
+what do I do?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Touch file.log (make sure you are root when you do this).
+
+<A HREF="#Contents">Back to Contents</FONT></A></PRE>
+
+<H3><A NAME="1.43"></A><FONT SIZE="+0" FACE="Times New Roman">1.43)
+How do I prevent subdirectories of a directory from being shown
+in site new?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Change your dirlog entry in config file to have a / at the end of the path.
+For example: dirlog /site/incoming/*/ *
+The above will log /site/incoming/Newdir but not /site/incoming/Newdir/dir1
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.44"></A><FONT SIZE="+0" FACE="Times New Roman">1.44)
+Does glftpd support upload resume??</FONT></H3>
+
+<PRE><FONT SIZE="+0">Yes, but: 
+          1) The user must have resume permissions for that file (set in 
+             glftpd.conf)
+          2) The uploader must be the file's owner
+          3) The file's permissions need to be 644 (default in glftpd) 
+Keep in mind that you might need to disable post_check (zipscript) in the
+directory where you want resume to work - or modify it not to delete
+incomplete files.
+which renames files people upload. This confuses many clients into thinking
+the file doesn't exist yet, and they try to upload it from the beginning,
+but when glftpd renames the new file name, it results in overwriting of
+the old file (unless the user has no overwrite permission, which results
+in an error).
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.45"></A><FONT SIZE="+0" FACE="Times New Roman">1.45)
+I get &quot;200- Lock on password file failed.&quot; when trying
+to add a user</FONT></H3>
+
+<PRE><FONT SIZE="+0">cd /glftpd/etc; cp passwd bleh; rm -f passwd; mv bleh passwd
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.46"></A><FONT SIZE="+0" FACE="Times New Roman">1.46)
+My glftpd won't start and my syslog says &quot;Chroot failed.&quot;
+What's wrong?</FONT></H3>
+
+<PRE><FONT SIZE="+0">1) You aren't running glftpd as root (the default line for inetd.conf runs
+   it as root, so you must have changed it)
+2) Your rootpath is incorrect in glftpd.conf.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.47"></A><FONT SIZE="+0" FACE="Times New Roman">1.47)
+How do I make symlinks on my site look like regular directories?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Add the -L option to your lslong options in glftpd.conf. exmp: lslong -alL
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.48"></A><FONT SIZE="+0" FACE="Times New Roman">1.48)
+How do I ban a specific IP from my site?</FONT></H3>
+
+<PRE><FONT SIZE="+0">1) Ban it in your firewall.
+2) If you're using tcpd in inetd.conf to call glftpd (this is default),
+   ban the IP in /etc/hosts.allow. Exmp: glftpd: ALL except 1.2.3.4
+   For more info, try &quot;man tcpd&quot; or &quot;man 5 hosts_access&quot; on slackware
+3) To ban that IP for only specific user(s), add it to a file, with a ! in
+   front, and add that file as IP0 of that user. See addip syntax in docs.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.49"></A><FONT SIZE="+0" FACE="Times New Roman">1.49)
+I can connect to newly installed glftpd from localhost, but not
+from<BR>
+outside.</FONT></H3>
+
+<PRE><FONT SIZE="+0">1) Add *@* to the user you're trying to connect as (yes, if your IP is not
+   added to any users, you won't even get a login prompt).
+2) Add &quot;glftpd: ALL&quot; to /etc/hosts.allow (unless you didn't use tcpd in
+   inetd.conf)
+3) Make sure you're not using a firewall of some kind.
+4) If you're using &quot;valid_ip&quot; in config file, comment it out and try again.
+5) Check glftpd logs and system logs (make sure your system logs errors)
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.50"></A><FONT SIZE="+0" FACE="Times New Roman">1.50)
+I make changes to glftpd.conf but they don't take effect when
+I re-login.</FONT></H3>
+
+<PRE><FONT SIZE="+0">Are you modifying the correct config file? By default it's /etc/glftpd.conf,
+not /glftpd/etc/glftpd.conf or /glftpd/glftpd.conf.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.51"></A><FONT SIZE="+0" FACE="Times New Roman">1.51)
+How do I make new users start at a specific UID, like 10000?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Edit /glftpd/etc/passwd and change last user's UID to 10000.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.52"></A><FONT SIZE="+0" FACE="Times New Roman">1.52)
+Can I disallow users to see or enter a directory but allow them
+to enter<BR>
+its subdirectory via symlink?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Yes. Add these lines to your config file:
+privpath /site/hiddendir/yourdir *
+privpath /site/hiddendir =NoOne
+(make sure you don't have a group called NoOne)
+Then go to /glftpd/site and make a symlink, ie.
+ln -s ./hiddendir/yourdir link_to_yourdir
+Note: once you cd to link_to_yourdir, you can't do &quot;cd ..&quot; because &quot;..&quot; is
+protected. To get out, either &quot;cd /&quot; or make a symlink in yourdir that
+points to &quot;../..&quot; . Also, some clients will automatically cd to the proper
+parent when you are in a symlink-directory, but only if they know it's a
+symlink. If you use ls -L (or if your lslong setting in config file
+has the L in its options), the symlink appears as normal directory so the
+client thinks it's just a regular directory.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.53"></A><FONT SIZE="+0" FACE="Times New Roman">1.53)
+Can I restrict one command but not others in a case of bundled
+commands,<BR>
+like &quot;laston&quot; and &quot;onel&quot;, which are both controlled
+by the &quot;-info&quot; setting?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Yes. Here is what you need to add to restrict &quot;site laston&quot; to siteops only,
+without affecting other commands controlled by &quot;-info&quot;, to glftpd.conf:
+site_cmd laston is laston
+custom-laston 1
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.54"></A><FONT SIZE="+0" FACE="Times New Roman">1.54)
+Why do my new users start in / instead of /site when they log
+in.</FONT></H3>
+
+<PRE><FONT SIZE="+0">Are you missing the HOMEDIR line from your default.user file? Don't edit
+default.* files with useredit.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.55"></A><FONT SIZE="+0" FACE="Times New Roman">1.55)
+How do I get gl_spy to use color?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Run it in console, or if you have SecureCRT, set terminal to Linux, font
+to vt100, and on the linux box set TERM to crt (TERM=crt in bash)
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.56"></A><FONT SIZE="+0" FACE="Times New Roman">1.56)
+Why does glftpd only recognize GIDs that are multiple of 100?
+Why do GIDs<BR>
+seem to increase by themselves, yet glftpd still displays the
+same one?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Glftpd uses GID to store the number of times a file was downloaded (it
+stops counting at 99). So, if a file's GID is 428, it means the real GID is
+400 and the file was downloaded 28 times. This will increase each time the
+file was downloaded until it reaches 499. The number of times the file was
+downloaded is displayed in long directory listing (ls -l) if you have color
+turned on (so as not to interfere with windows clients, which require color
+to be off).
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.57"></A><FONT SIZE="+0" FACE="Times New Roman">1.57)
+Can I &quot;unbind&quot; one of the bundled site commands so I
+can have different<BR>
+permission for it than for the rest?</FONT></H3>
+
+<PRE><FONT SIZE="+0">No, but there is a work-around. For example, to allow everyone to execute
+stat commands (wkup, daydn, etc) but only allow siteops to execute site
+traffic, do this:
+1. Add a custom command traffic: &quot;site_cmd traffic is traffic&quot;
+2. Add permissions for your new command: &quot;custom-traffic 1&quot; (this will only
+   allow siteops to execute site traffic)
+3. Your -stats permissions should be &quot;*&quot; to allow everyone to use them.
+   If you do it the other way around, giving &quot;site traffic&quot; * access and
+   &quot;-stats 1&quot;, it will not work because site traffic now uses 2 sets of
+   permissions, one with the custom-traffic setting, and the other one with
+   the -stats setting; user has to pass both to be able to execute the command.
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.58"></A><FONT SIZE="+0" FACE="Times New Roman">1.58)
+Does glftpd run stand-alone, without inetd?</FONT></H3>
+
+<PRE><FONT SIZE="+0">No, you need inetd, xinetd, or some other program that works in a similar
+fashion. You need to run glftpd as root, anyway, so why not use inetd?
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.59"></A><FONT SIZE="+0" FACE="Times New Roman">1.59)
+Will glftpd support using system passwd file (/etc/passwd)?</FONT></H3>
+
+<PRE><FONT SIZE="+0">No. Glftpd needs a userfile for each user; normal unix users don't have
+any such thing, so you would have to generate a userfile for every person
+even if glftpd supported it. It's just as easy to write a script that
+will add the user to glftpd (by either modifying /glftpd/etc/passwd and
+creating the userfile in ftp-data/users, or logging into glftpd and using
+site commands).
+
+<A HREF="#Contents">Back to Contents</A></FONT></PRE>
+
+<H3><A NAME="1.60"></A><FONT SIZE="+0" FACE="Times New Roman">1.60)
+Does glftpd support /etc/shadow?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Shadow is simply the same thing as passwd but only readable by root.
+Glftpd's passwd file can be made 600 already, so you could say glftpd always
+supported it. For more info see the question above.
+</FONT>
+<A HREF="#Contents"><FONT SIZE="+0">Back to Contents</FONT></A></PRE>
+
+<H3><A NAME="1.61"></A><FONT SIZE="+0" FACE="Times New Roman">1.61)
+What does the multiplier in 'site nuke' do?</FONT></H3>
+
+<PRE><FONT SIZE="+0">Multiplier is a penalty measure. If it is 0, the user doesn't lose any
+credits for the stuff being nuked. If it is 1, user only loses the
+amount of credits he gained by uploading the files (which is calculated
+by multiplying total size of file by his/her ratio). If multiplier is more
+than 1, the user loses the credits he/she gained by uploading, PLUS some
+extra credits. The formula is this: size * ratio + size * (multiplier - 1).
+This way, multiplier of 2 causes user to lose size * ratio + size * 1,
+so the additional penalty in this case is the size of nuked files. If the
+multiplier is 3, user loses size * ratio + size * 2, etc.
+
+<A HREF="#Contents">Back to Contents</A></PRE>
+
+document originally created by dn (#glftpd@efnet)</FONT>
+
+</BODY>
+</HTML>
